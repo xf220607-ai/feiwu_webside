@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Badge Lab — Fei Wu",
+  title: { absolute: "Badge Lab — Fei Wu" },
   description: "Badge Lab project case study by Fei Wu.",
 };
 
@@ -63,8 +64,8 @@ export default function BadgeLabPage() {
       <footer className="project-footer">
         <a href="/">← Return to portfolio</a><p>Fei Wu · Portfolio prototype</p>
       </footer>
-      <script src="/js/projects.js" defer />
-      <script src="/js/animations.js" defer />
+      <Script src="/js/projects.js" strategy="afterInteractive" />
+      <Script src="/js/animations.js" strategy="afterInteractive" />
     </main>
   );
 }

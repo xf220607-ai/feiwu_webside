@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Fei Wu — Portfolio",
+  title: { absolute: "Fei Wu — Portfolio" },
   description: "A layered, mobile-first portfolio by Fei Wu.",
 };
 
@@ -76,8 +77,8 @@ export default function Home() {
       <footer className="site-footer">
         <p>Fei Wu · Portfolio prototype</p><a href="mailto:hello@example.com">Let&apos;s talk ↗</a>
       </footer>
-      <script src="/js/projects.js" defer />
-      <script src="/js/animations.js" defer />
+      <Script src="/js/projects.js" strategy="afterInteractive" />
+      <Script src="/js/animations.js" strategy="afterInteractive" />
     </main>
   );
 }
