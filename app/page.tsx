@@ -17,18 +17,21 @@ export default function Home() {
   return (
     <main>
       <section className="hero" aria-labelledby="hero-name">
-        <div className="hero-background placeholder-layer" aria-hidden="true">
-          <span>HERO BACKGROUND<br /><small>replace asset</small></span>
+        <div className="hero-background" aria-hidden="true">
+          <img src="/assets/home/background/background.jpg" alt="" />
         </div>
 
         <h1 className="hero-name" id="hero-name"><span>Fei</span><span>Wu</span></h1>
 
-        <div className="hero-portrait placeholder-layer" role="img" aria-label="Portrait image placeholder">
-          <span>PORTRAIT<br /><small>replace asset</small></span>
+        <div className="hero-portrait">
+          <img
+            src="/assets/home/portrait/fei-portrait.png"
+            alt="Portrait of Fei Wu"
+          />
         </div>
 
-        <div className="hero-foreground placeholder-layer" aria-hidden="true">
-          <span>FOREGROUND<br /><small>replace asset</small></span>
+        <div className="hero-foreground" aria-hidden="true">
+          <img src="/assets/home/foreground/foreground.png" alt="" />
         </div>
 
         <div className="interactive-stars" aria-label="Personal information">
