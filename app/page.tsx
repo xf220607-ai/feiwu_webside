@@ -10,7 +10,6 @@ const stars = [
   { id: "email", label: "Email", content: "Say hello or ask about a collaboration.", position: "star-email" },
   { id: "education", label: "Education", content: "Education details placeholder — add institution, degree, and year.", position: "star-education" },
   { id: "internship", label: "Internship Experience", content: "Internship placeholder — add role, studio, and a concise contribution.", position: "star-internship" },
-  { id: "projects", label: "Project Experience", content: "Selected work across web design, interaction, and creative development.", position: "star-projects" },
 ];
 
 export default function Home() {
