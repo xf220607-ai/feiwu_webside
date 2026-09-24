@@ -7,42 +7,53 @@ export const metadata: Metadata = {
 };
 
 const stars = [
-  { id: "email", label: "Email", content: "Say hello or ask about a collaboration.", position: "star-email" },
-  { id: "education", label: "Education", content: "Education details placeholder — add institution, degree, and year.", position: "star-education" },
-  { id: "internship", label: "Internship Experience", content: "Internship placeholder — add role, studio, and a concise contribution.", position: "star-internship" },
-  { id: "projects", label: "Project Experience", content: "Selected work across web design, interaction, and creative development.", position: "star-projects" },
+  { id: "contact", title: "CONTACT", buttonLabel: "Contact information", position: "star-contact" },
+  { id: "education", title: "CONTACT", buttonLabel: "Education information", position: "star-education" },
 ];
 
 export default function Home() {
   return (
     <main>
       <section className="hero" aria-labelledby="hero-name">
-        <div className="hero-background placeholder-layer" aria-hidden="true">
-          <span>HERO BACKGROUND<br /><small>replace asset</small></span>
+        <div className="hero-background" aria-hidden="true">
+          <img src="/assets/home/background/background.jpg" alt="" />
         </div>
 
         <h1 className="hero-name" id="hero-name"><span>Fei</span><span>Wu</span></h1>
 
-        <div className="hero-portrait placeholder-layer" role="img" aria-label="Portrait image placeholder">
-          <span>PORTRAIT<br /><small>replace asset</small></span>
+        <div className="hero-portrait">
+          <img
+            src="/assets/home/portrait/fei-portrait.PNG"
+            alt="Portrait of Fei Wu"
+          />
         </div>
 
-        <div className="hero-foreground placeholder-layer" aria-hidden="true">
-          <span>FOREGROUND<br /><small>replace asset</small></span>
+        <div className="hero-foreground" aria-hidden="true">
+          <img src="/assets/home/foreground/foreground.png" alt="" />
         </div>
 
         <div className="interactive-stars" aria-label="Personal information">
           {stars.map((star, index) => (
             <div className={`star-system ${star.position}`} key={star.id}>
               <button className="star-button" type="button" aria-expanded="false" aria-controls={`popover-${star.id}`}>
-                <span aria-hidden="true">★</span><span className="sr-only">Show {star.label}</span>
+                <span aria-hidden="true">★</span><span className="sr-only">Show {star.buttonLabel}</span>
               </button>
               <aside className="star-popover" id={`popover-${star.id}`} hidden>
-                <button className="popover-close" type="button" aria-label={`Close ${star.label}`}>×</button>
+                <button className="popover-close" type="button" aria-label={`Close ${star.buttonLabel}`}>×</button>
                 <small>0{index + 1} / PERSONAL NOTE</small>
-                <h2>{star.label}</h2>
-                <p>{star.content}</p>
-                {star.id === "email" && <a href="mailto:hello@example.com">hello@example.com</a>}
+                <h2>{star.title}</h2>
+                {star.id === "contact" ? (
+                  <address className="contact-details">
+                    <a href="mailto:fei.wu26@outlook.com">fei.wu26@outlook.com</a>
+                    <a href="tel:+8618704710206">+86 18704710206</a>
+                    <a href="tel:+61458420157">+61 458420157</a>
+                  </address>
+                ) : (
+                  <div className="education-details">
+                    <div className="education-row"><span lang="zh-CN">澳大利亚国立大学</span><span>2026.7-2027.6</span></div>
+                    <div className="education-row"><span lang="zh-CN">华东政法大学</span><span>2022.9-2026.6</span></div>
+                  </div>
+                )}
               </aside>
             </div>
           ))}
@@ -75,7 +86,7 @@ export default function Home() {
       </section>
 
       <footer className="site-footer">
-        <p>Fei Wu · Portfolio prototype</p><a href="mailto:hello@example.com">Let&apos;s talk ↗</a>
+        <p>Fei Wu · Portfolio prototype</p><a href="mailto:fei.wu26@outlook.com">Let&apos;s talk ↗</a>
       </footer>
       <PortfolioScripts />
     </main>
