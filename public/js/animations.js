@@ -5,35 +5,26 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   function initStars() {
-    const systems = Array.from(document.querySelectorAll(".star-system"));
+    const systems = Array.from(document.querySelectorAll("details.star-system"));
     if (!systems.length) return;
 
     const closeAll = (except) => {
       systems.forEach((system) => {
-        if (system === except) return;
-        const button = system.querySelector(".star-button");
-        const popover = system.querySelector(".star-popover");
-        button.setAttribute("aria-expanded", "false");
-        popover.hidden = true;
+        if (system !== except) system.open = false;
       });
     };
 
     systems.forEach((system) => {
-      const button = system.querySelector(".star-button");
-      const popover = system.querySelector(".star-popover");
-      const close = system.querySelector(".popover-close");
+      const summary = system.querySelector(".star-button");
+      const close = system.querySelector("[data-star-close]");
 
-      button.addEventListener("click", () => {
-        const shouldOpen = button.getAttribute("aria-expanded") !== "true";
-        closeAll(shouldOpen ? system : null);
-        button.setAttribute("aria-expanded", String(shouldOpen));
-        popover.hidden = !shouldOpen;
+      system.addEventListener("toggle", () => {
+        if (system.open) closeAll(system);
       });
 
       close.addEventListener("click", () => {
-        button.setAttribute("aria-expanded", "false");
-        popover.hidden = true;
-        button.focus();
+        system.open = false;
+        summary.focus();
       });
     });
 

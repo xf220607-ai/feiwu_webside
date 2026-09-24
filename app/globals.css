@@ -76,12 +76,13 @@ a { text-underline-offset: .22em; }
 .star-system { position: absolute; pointer-events: auto; }
 .star-contact { left: 8%; top: 10%; }
 .star-education { right: 12%; top: 48%; }
-.star-button { width: 2.6rem; height: 2.6rem; padding: 0; border: 0; background: transparent; cursor: pointer; font-size: 5rem; line-height: 1; color: var(--paper); text-shadow: 2px 2px 0 var(--ink); transition: transform .22s ease, filter .22s ease; }
+.star-button { display: block; width: 2.6rem; height: 2.6rem; padding: 0; border: 0; background: transparent; cursor: pointer; list-style: none; user-select: none; font-size: 5rem; line-height: 1; color: var(--paper); text-shadow: 2px 2px 0 var(--ink); transition: transform .22s ease, filter .22s ease; }
+.star-button::-webkit-details-marker { display: none; }
 .star-contact .star-button { color: #ff2d16; }
 .star-education .star-button { color: #92e8f6; }
-.star-button:hover, .star-button:focus-visible, .star-button[aria-expanded="true"] { transform: scale(1.16) rotate(12deg); filter: drop-shadow(0 0 8px currentColor); outline: none; }
-.star-popover { position: absolute; z-index: 10; top: 3rem; left: min(-18vw,-3rem); width: min(86vw,30rem); padding: 1.4rem 3rem 2.25rem 1.6rem; border: var(--line); background: var(--paper); box-shadow: 9px 12px 0 var(--ink); }
-.star-popover[hidden] { display: none; }
+.star-button:hover, .star-button:focus-visible, .star-system[open] > .star-button { transform: scale(1.16) rotate(12deg); filter: drop-shadow(0 0 8px currentColor); outline: none; }
+.star-popover { display: none; position: absolute; z-index: 10; top: 3rem; left: min(-18vw,-3rem); width: min(86vw,30rem); padding: 1.4rem 3rem 2.25rem 1.6rem; border: var(--line); background: var(--paper); box-shadow: 9px 12px 0 var(--ink); }
+.star-system[open] > .star-popover { display: block; }
 .star-popover small { font: 700 .7rem/1 monospace; letter-spacing: .1em; }
 .star-popover h2 { margin: 1.7rem 0 1.6rem; font-size: clamp(1.6rem,6vw,2rem); line-height: 1; }
 .contact-details { display: grid; gap: .3rem; font-style: normal; font-size: clamp(1.1rem,4.6vw,1.5rem); line-height: 1.15; }

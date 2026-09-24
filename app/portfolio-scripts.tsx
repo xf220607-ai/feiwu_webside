@@ -29,8 +29,8 @@ function loadScript(id: string, src: string) {
 
 export function PortfolioScripts() {
   useEffect(() => {
-    loadScript("portfolio-project-data", "/js/projects.js")
-      .then(() => loadScript("portfolio-interactions", "/js/animations.js"))
+    loadScript("portfolio-project-data", "/js/projects.js?v=20260924-3")
+      .then(() => loadScript("portfolio-interactions", "/js/animations.js?v=20260924-3"))
       .catch((error) => console.error(error));
   }, []);
 
