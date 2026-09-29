@@ -64,7 +64,7 @@
     article.className = "project-object";
     article.dataset.projectIndex = String(index);
     article.innerHTML = `
-      <a href="${project.projectPage}" aria-label="Open ${project.title} project">
+      <a ${project.url ? `href="${project.url}"` : 'aria-disabled="true" tabindex="-1"'} aria-label="Open ${project.title} project">
         <div class="project-disc" aria-hidden="true"></div>
         <div class="project-cover" style="--cover:${project.coverColor}">
           <strong>${project.title}</strong>
@@ -78,9 +78,8 @@
       if (!article.classList.contains("is-active")) {
         event.preventDefault();
         select(index);
-      } else if (project.projectPage.startsWith("#")) {
+      } else if (!project.url) {
         event.preventDefault();
-        window.alert("This project page is a placeholder for a future case study.");
       }
     });
     return article;
@@ -128,13 +127,13 @@
         item.setAttribute("aria-hidden", String(index !== active));
       });
       const project = projects[active];
-      meta.innerHTML = `<p>${String(active + 1).padStart(2,"0")} / ${String(projects.length).padStart(2,"0")}</p><h3>${project.title}</h3><span>${project.category} · ${project.year}</span><a href="${project.projectPage}">View project <span aria-hidden="true">↗</span></a>`;
-      if (project.projectPage.startsWith("#")) {
-        meta.querySelector("a").addEventListener("click", (event) => {
-          event.preventDefault();
-          window.alert("This project page is a placeholder for a future case study.");
-        });
-      }
+      const projectLink = project.url
+        ? `<a class="project-link" href="${project.url}">View project <span aria-hidden="true">↗</span></a>`
+        : '<span class="project-link" role="link" aria-disabled="true">View project <span aria-hidden="true">↗</span></span>';
+      const websiteLink = project.externalWebsite
+        ? `<a class="project-url" href="${project.externalWebsite}">${project.externalWebsite}</a>`
+        : "";
+      meta.innerHTML = `<p>${String(active + 1).padStart(2,"0")} / ${String(projects.length).padStart(2,"0")}</p><h3>${project.title}</h3><span>${project.category} · ${project.year}</span>${websiteLink}${projectLink}`;
     };
 
     select = (index) => { active = (index + projects.length) % projects.length; render(); };
@@ -146,7 +145,11 @@
       if (event.key === "ArrowLeft") { event.preventDefault(); previous(); }
       if (event.key === "ArrowRight") { event.preventDefault(); next(); }
     });
-    shell.addEventListener("pointerdown", (event) => { pointerStart = event.clientX; shell.setPointerCapture(event.pointerId); });
+    shell.addEventListener("pointerdown", (event) => {
+      if (event.target.closest("button, a")) return;
+      pointerStart = event.clientX;
+      shell.setPointerCapture(event.pointerId);
+    });
     shell.addEventListener("pointerup", (event) => {
       if (pointerStart === null) return;
       const delta = event.clientX - pointerStart;

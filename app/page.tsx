@@ -47,12 +47,12 @@ export default function Home() {
           <div className="project-orbit" data-project-orbit aria-live="polite" />
           <button className="carousel-control control-prev" type="button" data-carousel-prev aria-label="Previous project">←</button>
           <button className="carousel-control control-next" type="button" data-carousel-next aria-label="Next project">→</button>
-          <p className="carousel-instruction"><span className="mobile-copy">Swipe or tap arrows</span><span className="desktop-copy">Drag, scroll, or use arrow keys</span></p>
+          
         </div>
 
         <div className="active-project-meta" data-project-meta>
-          <p>01 / 04</p><h3>Badge Lab</h3><span>Interactive Web · 2026</span>
-          <a href="/project-badge-lab">View project <span aria-hidden="true">↗</span></a>
+          <p>01 / 02</p><h3>Badge Lab</h3><span>Interactive Web · 2026</span>
+          <span className="project-link" role="link" aria-disabled="true">View project <span aria-hidden="true">↗</span></span>
         </div>
       </section>
 
